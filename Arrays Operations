@@ -1,0 +1,140 @@
+1 - Inserting array
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int cap = sc.nextInt();
+	    int arr[] = new int[cap];//array capacity
+	    int a = sc.nextInt();//actual size of array
+	    for(int i=0;i<a;i++){
+	        arr[i] = sc.nextInt();
+	    } 
+	    int x = sc.nextInt();//element need to insert
+	    int pos = sc.nextInt();//pos where we need to insert an element
+	    //up to this inputs array reading 
+	    if(cap == a)
+	       System.out.println("arr is full");
+	   int ind = pos-1;
+	   for(int i=a-1;i>=ind;i--){
+	       arr[i+1] = arr[i];
+	   }
+	   arr[ind] = x;
+	   for(int i=0;i<arr.length;i++){
+	       System.out.print(arr[i]+" ");
+	   }
+	}
+}
+output:
+5  //capacity
+3 //actual size
+5 10 20
+7 //new element
+2 //pos of element
+5 7 10 20 0 
+
+2- Delete a element
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int cap = sc.nextInt();
+	    int arr[] = new int[cap];//array capacity
+	    for(int i=0;i<cap;i++){
+	        arr[i] = sc.nextInt();
+	    } 
+	    int x = sc.nextInt();//element need to delete
+	    //up to this inputs array reading 
+	    int i;
+	    for(i=0;i<cap;i++)
+	        if(arr[i]==x)
+	        break;
+	    if(i==cap)
+	        System.out.println("element is not found");
+	    for(int j=i;j<cap-1;j++){
+	        arr[j]=arr[j+1];
+	    }
+	    for(i=0;i<cap-1;i++){
+	        System.out.print(arr[i]+" ");
+	    }
+	}
+}
+output:
+5
+3 8 12 5 6
+12
+3 8 5 6 
+
+3 - Return largest element index in the array
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int n = sc.nextInt();
+	    int arr[] = new int[n];//array capacity
+	    for(int i=0;i<n;i++){
+	        arr[i] = sc.nextInt();
+	    } 
+	    int lar = 0;
+	    for(int i=0;i<n;i++){
+	        if(arr[i]>arr[lar]){
+	            lar = i;
+	        }
+	    }
+	    System.out.println(lar);
+	}
+}
+output:
+5
+10 20 30 1 2
+2
+
+3- Check if the array is sorted or not?
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int arr[]=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i] = sc.nextInt();
+		}
+		System.out.println(issort(arr,n));
+		 
+	}
+	public static boolean issort(int arr[],int n){
+	    for(int i=0;i<n;i++){
+	        for(int j=i+1;j<n;j++){
+	            if(arr[j]<arr[i])
+	                return false;
+	        }
+	    }
+	    return true;
+	}
+}
+output:
+6
+11 20 40 50 70 88
+true
+
+->Another Method
+public static boolean  issort(int arr[],int n){
+	    int res = arr[0];
+	    for(int i=1;i<n;i++){
+	        if(arr[i]>=res){
+	         res = arr[i];   
+	        }
+	        else{
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
+  
