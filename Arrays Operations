@@ -69,6 +69,7 @@ output:
 3 8 5 6 
 
 3 - Return largest element index in the array
+----------------------------------------------
 import java.util.*;
 public class Main
 {
@@ -94,7 +95,7 @@ output:
 2
 
 3- Check if the array is sorted or not?
-
+-----------------------------------------
 import java.util.*;
 public class Main
 {
@@ -136,5 +137,116 @@ public static boolean  issort(int arr[],int n){
 	    }
 	    return true;
 	}
+4- To Find the Second largest element in the array - Naive Method
+-------------------------------------------------------------------
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i] = sc.nextInt();
+		}
+		System.out.println(secondlar(arr));
+	}
+	public static int getlargest(int arr[]){
+	    int largest = 0;
+	    for(int i = 1;i<arr.length;i++){
+	        if(arr[i]>arr[largest]){
+	            largest = i;
+	        }
+	    }
+	    return largest;
+	}
+	public static int secondlar(int arr[]){
+	    int largest  = getlargest(arr);
+	    int res = -1;//if all elements are same we have to return -1;
+	    for(int i=0;i<arr.length;i++){
+	        if(arr[i]!=arr[largest]){
+	            if(res == -1){
+	                res = i;
+	            }
+	            else if(arr[i]>arr[res]){
+	                res = i;
+	            }
+	        }
+	    }
+	    return res;
+	}
+}
+output:
+8
+22 33 1 2 6 88 99 00 
+5
 
-  
+5 - Better way:
+--------------------------
+public static int secondlar(int arr[]){
+	    int seconlar = -1,largest = 0;//if all elements are same we have to return -1;
+	    for(int i=1;i<arr.length;i++){
+	            if(arr[i]>arr[largest]){
+	                seconlar = largest;
+	                largest = i;
+	            }
+	            else if(arr[i]!=arr[largest]){
+	                if(seconlar == -1 || arr[i]>arr[seconlar])
+	                    seconlar = i;
+	            }
+	        }
+	    return seconlar;
+	}
+
+output:
+5
+3 7 5 15 10
+4
+
+6 - Remove Duplictas:
+----------------------
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i] = sc.nextInt();
+		}
+		int arr2[]=new int[n];
+		arr2[0] = arr[0];
+		int res = 1;
+		for(int i=1;i<n;i++){
+		    if(arr2[res-1]!=arr[i]){
+		        arr2[res] = arr[i];
+		        res++;
+		    }
+		}
+		for(int i=0;i<res;i++){
+		    arr[i] = arr2[i];
+		    System.out.print(arr[i]+" ");
+		}
+	}
+}
+output:
+7
+10 20 20 30 30 30 30
+10 20 30
+Another method:
+----------------
+public static int remduplicates(int arr[]){
+	    int size = 1;
+	    for(int i=1;i<arr.length;i++){
+	        if(arr[i]!=arr[size-1]){
+	            arr[size] = arr[i];
+	            size++;
+	        }
+	    }
+	    return size;
+	}
+output: 
+7
+10 20 20 30 30 30 30
+3
